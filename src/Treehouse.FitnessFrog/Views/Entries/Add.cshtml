@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Add Entry";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="post">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="Date" class="control-label">Date</label>
+                <input type="text" id="Date" name="Date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="ActivityId" class="control-label">Activity</label>
+                <input type="text" id="ActivityId" name="ActivityId" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="Duration" class="control-label">Duration</label>
+                <input type="text" id="Duration" name="Duration" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="Intensity" class="control-label">Intensity</label>
+                <input type="text" id="Intensity" name="Intensity" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="Exclude" class="control-label">Exclude</label>
+                <input type="text" id="Exclude" name="Exclude" class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="Notes" class="control-label">Notes</label>
+                <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20"></textarea>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <div class="pad-top">
+                <button type="submit" class="btn btn-success btn-lg margin-right">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</form>
