@@ -41,11 +41,16 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            //Instantiation of Entry model
+            var entry = new Entry()
+            {
+                Date = DateTime.Today
+            };
+            return View(entry);
         }
 
-        [HttpPost]
-        public ActionResult Add(DateTime? date,int? activityId, double? duration, 
+        //[HttpPost]
+        /*public ActionResult Add(DateTime? date,int? activityId, double? duration, 
                 Entry.IntensityLevel? intensity,bool? exclude, string notes)
         {
             //Getting Inout from the form
@@ -70,9 +75,16 @@ namespace Treehouse.FitnessFrog.Controllers
             ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue; */
             //Since now we are using Html Helper classes so need not to use the above code.
             //THe form automaticly hold the data after the submission.
-            
-
-
+            //return View();
+        //}
+        [HttpPost]
+        public ActionResult Add(Entry entry)    //Using post method like this we can take the full advantage of our model(Entry).
+        {
+            if (ModelState.IsValid)
+            {
+                _entriesRepository.AddEntry(entry);
+                //TODO Display the Entries list page
+            }
             return View();
         }
 

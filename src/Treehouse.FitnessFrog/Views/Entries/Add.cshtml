@@ -1,4 +1,7 @@
-﻿
+﻿<!--Make view strongly typed by adding the model directive-->   
+
+@model Treehouse.FitnessFrog.Models.Entry
+
 @{
     ViewBag.Title = "Add Entry";
 }
@@ -15,28 +18,28 @@
         <div class="col-md-6">
 
             <div class="form-group">
-                @Html.Label("Date", new { @class= "control-label"})
-                @Html.TextBox("Date",null,new { @class="form-control"})
+                @Html.LabelFor(m=>m.Date, new { @class = "control-label" })
+                @Html.TextBoxFor(m=>m.Date,"{0:d}", new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("ActivityId", new { @class = "control-label" })
-                @Html.TextBox("ActivityId", null, new { @class = "form-control" })
+                @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.ActivityId, null, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("Duration", new { @class= "control-label"})
-                @Html.TextBox("Duration",null,new { @class="form-control"})
+                @Html.LabelFor(m => m.Duration, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Duration, null, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("Intensity", new { @class= "control-label"})
-                @Html.TextBox("Intensity",null,new { @class="form-control"})
+                @Html.LabelFor(m => m.Intensity, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Intensity, null, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("Exclude", new { @class = "control-label" })
-                @Html.TextBox("Exculde", null, new { @class = "form-control" })
+                @Html.LabelFor(m => m.Exclude, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Exclude, null, new { @class = "form-control" })
             </div>
 
         </div>
@@ -44,8 +47,8 @@
         <div class="col-md-6">
 
             <div class="form-group">
-                @Html.Label("Notes", new { @class= "control-label"})
-                @Html.TextArea("Notes",null,14,20, new { @class="form-control"})
+                @Html.LabelFor(m=>m.Notes, new { @class = "control-label" })
+                @Html.TextAreaFor(m=>m.Notes, 14, 20, new { @class = "form-control" })
             </div>
 
         </div>
@@ -66,61 +69,4 @@
 
 
 
-
-@*<form method="post">
-
-        <div class="row">
-
-            <div class="col-md-6">
-
-                <div class="form-group">
-                    <label for="Date" class="control-label">Date</label>
-                    <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="ActivityId" class="control-label">Activity</label>
-                    <input type="text" id="ActivityId" name="ActivityId" class="form-control" value="@ViewBag.ActivityId" />
-                </div>
-
-                <div class="form-group">
-                    <label for="Duration" class="control-label">Duration</label>
-                    <input type="text" id="Duration" name="Duration" class="form-control" value="@ViewBag.Duration"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="Intensity" class="control-label">Intensity</label>
-                    <input type="text" id="Intensity" name="Intensity" class="form-control" value="@ViewBag.Intensity"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="Exclude" class="control-label">Exclude</label>
-                    <input type="text" id="Exclude" name="Exclude" class="form-control"
-                           value="@(ViewBag.Exclude!= null ? ViewBag.Exclude.ToString():"")"/>
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <div class="form-group">
-                    <label for="Notes" class="control-label">Notes</label>
-                    <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>
-                </div>
-
-            </div>
-
-            <div class="col-md-12">
-                <div class="pad-top">
-                    <button type="submit" class="btn btn-success btn-lg margin-right">
-                        <span class="glyphicon glyphicon-save"></span> Save
-                    </button>
-                    <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
-                        <span class="glyphicon glyphicon-remove"></span> Cancel
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-    </form>*@
+ 
