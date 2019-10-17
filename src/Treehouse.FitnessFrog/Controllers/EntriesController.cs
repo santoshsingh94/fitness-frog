@@ -55,12 +55,19 @@ namespace Treehouse.FitnessFrog.Controllers
             DateTime.TryParse(date, out dateValue);*/
             //But modelBinder automaticly converts the incoming values to the expected data types. 
 
-            ViewBag.Date = date;
+            /*ViewBag.Date = date;
             ViewBag.ActivityId = activityId;
             ViewBag.Duration = duration;
             ViewBag.Intensity = intensity;
             ViewBag.Exclude = exclude;
-            ViewBag.Notes = notes;
+            ViewBag.Notes = notes;*/
+            //To handle invalid input we are going to use following code instead of the above code
+            ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+            ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue; 
+            ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue; 
+            ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue; 
+            ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue; 
+            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue; 
 
             return View();
         }
