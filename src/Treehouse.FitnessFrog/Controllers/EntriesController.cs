@@ -45,10 +45,16 @@ namespace Treehouse.FitnessFrog.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(string date,string activityId, string duration, string intensity,string exclude, string notes)
+        public ActionResult Add(DateTime? date,int? activityId, double? duration, 
+                Entry.IntensityLevel? intensity,bool? exclude, string notes)
         {
             //Getting Inout from the form
             //string date = Request.Form["Date"]; //Or we can simply get into the parameter
+            //Parsing Data to its actual type as follow.Like Date can be in DateTime not in string .
+            /*DateTime dateValue;
+            DateTime.TryParse(date, out dateValue);*/
+            //But modelBinder automaticly converts the incoming values to the expected data types. 
+
             ViewBag.Date = date;
             ViewBag.ActivityId = activityId;
             ViewBag.Duration = duration;
