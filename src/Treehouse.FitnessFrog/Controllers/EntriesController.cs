@@ -62,12 +62,16 @@ namespace Treehouse.FitnessFrog.Controllers
             ViewBag.Exclude = exclude;
             ViewBag.Notes = notes;*/
             //To handle invalid input we are going to use following code instead of the above code
-            ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+           /* ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
             ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue; 
             ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue; 
             ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue; 
             ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue; 
-            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue; 
+            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue; */
+            //Since now we are using Html Helper classes so need not to use the above code.
+            //THe form automaticly hold the data after the submission.
+            
+
 
             return View();
         }
