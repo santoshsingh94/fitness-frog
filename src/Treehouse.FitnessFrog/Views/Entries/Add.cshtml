@@ -13,27 +13,27 @@
 
             <div class="form-group">
                 <label for="Date" class="control-label">Date</label>
-                <input type="text" id="Date" name="Date" class="form-control" />
+                <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date"/>
             </div>
 
             <div class="form-group">
                 <label for="ActivityId" class="control-label">Activity</label>
-                <input type="text" id="ActivityId" name="ActivityId" class="form-control" />
+                <input type="text" id="ActivityId" name="ActivityId" class="form-control" value="@ViewBag.ActivityId" />
             </div>
 
             <div class="form-group">
                 <label for="Duration" class="control-label">Duration</label>
-                <input type="text" id="Duration" name="Duration" class="form-control" />
+                <input type="text" id="Duration" name="Duration" class="form-control" value="@ViewBag.Duration"/>
             </div>
 
             <div class="form-group">
                 <label for="Intensity" class="control-label">Intensity</label>
-                <input type="text" id="Intensity" name="Intensity" class="form-control" />
+                <input type="text" id="Intensity" name="Intensity" class="form-control" value="@ViewBag.Intensity"/>
             </div>
 
             <div class="form-group">
                 <label for="Exclude" class="control-label">Exclude</label>
-                <input type="text" id="Exclude" name="Exclude" class="form-control" />
+                <input type="text" id="Exclude" name="Exclude" class="form-control" value="@ViewBag.Exclude"/>
             </div>
 
         </div>
@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label for="Notes" class="control-label">Notes</label>
-                <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20"></textarea>
+                <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>
             </div>
 
         </div>
