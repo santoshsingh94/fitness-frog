@@ -65,13 +65,20 @@
         </footer>
     </div>
 
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Content/bootstrap-datepicker.min.js"></script>
 
     <script>
         $('input.datepicker').datepicker({
-                format:'m/d/yyyy'
+            todayBtn: "linked",
+            todayHighlight: true,
+            language: "it",
+            autoclose: true,
+            format: 'd-m-yyyy'
         });
     </script>
 </body>
