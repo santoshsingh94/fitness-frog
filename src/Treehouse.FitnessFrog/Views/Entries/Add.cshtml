@@ -4,7 +4,25 @@
 
 @{
     ViewBag.Title = "Add Entry";
+
+    <!--Adding Drop down to our page-->
+    //var selectListItems = new[]
+    //{
+    //    new SelectListItem(){Value="1",Text="Item 1", Selected=false},
+    //    new SelectListItem(){Value="2",Text="Item 2", Selected=true}
+    //};
+    var items = new[]
+    {
+        new {Id=1,Name="Item1"},
+        new {Id=2,Name="Item2"}
+    };
+    var selectListItems = new SelectList(items, "Id", "Name");
 }
+
+@*<select>
+    <option value="1">Item 1</option>
+    <option value="2" selected>Item 2</option>
+</select>*@
 
 <h2>@ViewBag.Title</h2>
 
@@ -24,7 +42,8 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.ActivityId, null, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.ActivityId, 
+                            (SelectList)ViewBag.ActivitiesSelectListItems,"", new { @class = "form-control" })
             </div>
 
             <div class="form-group">
