@@ -2,6 +2,8 @@
 
 @model Treehouse.FitnessFrog.Models.Entry
 
+@using Treehouse.FitnessFrog.Models         @*This is for fetching intensity level in check boxes*@
+
 @{
     ViewBag.Title = "Add Entry";
 
@@ -11,12 +13,12 @@
     //    new SelectListItem(){Value="1",Text="Item 1", Selected=false},
     //    new SelectListItem(){Value="2",Text="Item 2", Selected=true}
     //};
-    var items = new[]
+    /*var items = new[]
     {
         new {Id=1,Name="Item1"},
         new {Id=2,Name="Item2"}
     };
-    var selectListItems = new SelectList(items, "Id", "Name");
+    var selectListItems = new SelectList(items, "Id", "Name");*/
 }
 
 @*<select>
@@ -53,7 +55,18 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Intensity, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.Intensity, null, new { @class = "form-control" })
+                <div>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Intensity, Entry.IntensityLevel.Low) @Entry.IntensityLevel.Low
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Intensity, Entry.IntensityLevel.Medium)@Entry.IntensityLevel.Medium
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Intensity, Entry.IntensityLevel.High) @Entry.IntensityLevel.High
+                    </label>
+                </div>
+                
             </div>
 
             <div class="form-group">
