@@ -24,8 +24,14 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="~/favicon.ico" rel="icon" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Secular+One" rel="stylesheet">
+
+    @*<link href="~/Content/boostrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />*@  @*Our Site specific css contains all these css*@
+
     <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,8 +48,7 @@
                 </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 <a href="@Url.Action("Add", "Entries")" style="visibility: @GetAddEntryButtonVisibility()"
                    class="btn btn-primary navbar-btn navbar-right">
                     <span class="glyphicon glyphicon-plus"></span> Add Entry
@@ -62,5 +67,12 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $('input.datepicker').datepicker({
+                format:'m/d/yyyy'
+        });
+    </script>
 </body>
 </html>
