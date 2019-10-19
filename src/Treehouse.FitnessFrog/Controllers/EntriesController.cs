@@ -44,13 +44,13 @@ namespace Treehouse.FitnessFrog.Controllers
             //Instantiation of Entry model
             var entry = new Entry()
             {
-                Date =DateTime.Today        //Convert.ToDateTime(DateTime.UtcNow.ToString("dd/MM/yyyy").Replace('-','/'))
+                Date = DateTime.Today        //Convert.ToDateTime(DateTime.UtcNow.ToString("dd/MM/yyyy").Replace('-','/'))
             };
-            ViewBag.ActivitiesSelectListItems = new SelectList(
-                Data.Data.Activities, "Id", "Name");
+            SetupActivitiesSelectListItems();       //Populate the activities select list items viewbag property.
             return View(entry);
         }
 
+        
         //[HttpPost]
         /*public ActionResult Add(DateTime? date,int? activityId, double? duration, 
                 Entry.IntensityLevel? intensity,bool? exclude, string notes)
@@ -60,24 +60,24 @@ namespace Treehouse.FitnessFrog.Controllers
             //Parsing Data to its actual type as follow.Like Date can be in DateTime not in string .
             /*DateTime dateValue;
             DateTime.TryParse(date, out dateValue);*/
-            //But modelBinder automaticly converts the incoming values to the expected data types. 
+        //But modelBinder automaticly converts the incoming values to the expected data types. 
 
-            /*ViewBag.Date = date;
-            ViewBag.ActivityId = activityId;
-            ViewBag.Duration = duration;
-            ViewBag.Intensity = intensity;
-            ViewBag.Exclude = exclude;
-            ViewBag.Notes = notes;*/
-            //To handle invalid input we are going to use following code instead of the above code
-           /* ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
-            ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue; 
-            ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue; 
-            ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue; 
-            ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue; 
-            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue; */
-            //Since now we are using Html Helper classes so need not to use the above code.
-            //THe form automaticly hold the data after the submission.
-            //return View();
+        /*ViewBag.Date = date;
+        ViewBag.ActivityId = activityId;
+        ViewBag.Duration = duration;
+        ViewBag.Intensity = intensity;
+        ViewBag.Exclude = exclude;
+        ViewBag.Notes = notes;*/
+        //To handle invalid input we are going to use following code instead of the above code
+        /* ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+         ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue; 
+         ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue; 
+         ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue; 
+         ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue; 
+         ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue; */
+        //Since now we are using Html Helper classes so need not to use the above code.
+        //THe form automaticly hold the data after the submission.
+        //return View();
         //}
         [HttpPost]
         public ActionResult Add(Entry entry)    //Using post method like this we can take the full advantage of our model(Entry).
@@ -85,13 +85,7 @@ namespace Treehouse.FitnessFrog.Controllers
             //Adding a global validation message
             //ModelState.AddModelError("", "This is global validation message.");
 
-
-            //If there aren't  any "Duration" field validation errors
-            //Then make sure that the duration is greater than "0"
-            if(ModelState.IsValidField("Duration") && entry.Duration <= 0)
-            {
-                ModelState.AddModelError("Duration", "The Duration field value must be greater than '0'. ");
-            }
+            ValidateEntry(entry);   //Server side validation code.
 
             if (ModelState.IsValid)
             {
@@ -99,10 +93,11 @@ namespace Treehouse.FitnessFrog.Controllers
 
                 return RedirectToAction("index");
             }
-            ViewBag.ActivitiesSelectListItems = new SelectList(
-                Data.Data.Activities, "Id", "Name");
+            SetupActivitiesSelectListItems();
             return View(entry);
         }
+
+        
 
         public ActionResult Edit(int? id)
         {
@@ -110,9 +105,35 @@ namespace Treehouse.FitnessFrog.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Get the requested entry from the repository.
+            Entry entry = _entriesRepository.GetEntry((int)id);
 
-            return View();
+            //Return a status of "Not Found" if the entry was not found.
+            if (entry == null)
+                return HttpNotFound();
+
+            SetupActivitiesSelectListItems();
+
+            return View(entry);
         }
+        [HttpPost]
+        public ActionResult Edit(Entry entry)
+        {
+            ValidateEntry(entry);
+            //If the Entry is valid
+            if (ModelState.IsValid)
+            {
+                //Use the repository to update the entry
+                _entriesRepository.UpdateEntry(entry);
+                //Redirect user to the "Entries" List page
+                return RedirectToAction("index");
+            }
+            //Populate the activities select list items viewbag property.
+            SetupActivitiesSelectListItems();
+
+            return View(entry);
+        }
+
 
         public ActionResult Delete(int? id)
         {
@@ -123,5 +144,25 @@ namespace Treehouse.FitnessFrog.Controllers
 
             return View();
         }
+
+
+        //New Methods to DRY(create new method from your set of codes using ctrl+.)
+        private void SetupActivitiesSelectListItems()
+        {
+            //Populate the activities select list items viewbag property.
+            ViewBag.ActivitiesSelectListItems = new SelectList(
+                Data.Data.Activities, "Id", "Name");
+        }
+
+        private void ValidateEntry(Entry entry)
+        {
+            //If there aren't  any "Duration" field validation errors
+            //Then make sure that the duration is greater than "0"
+            if (ModelState.IsValidField("Duration") && entry.Duration <= 0)
+            {
+                ModelState.AddModelError("Duration", "The Duration field value must be greater than '0'. ");
+            }
+        }
+
     }
 }
