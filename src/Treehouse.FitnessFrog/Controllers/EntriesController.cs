@@ -91,6 +91,9 @@ namespace Treehouse.FitnessFrog.Controllers
             {
                 _entriesRepository.AddEntry(entry);
 
+                //Using temp data to display notification
+                TempData["Message"] = "Your Entry was successfully added!";
+
                 return RedirectToAction("index");
             }
             SetupActivitiesSelectListItems();
@@ -125,6 +128,9 @@ namespace Treehouse.FitnessFrog.Controllers
             {
                 //Use the repository to update the entry
                 _entriesRepository.UpdateEntry(entry);
+
+                TempData["Message"] = "Your Entry was successfully updated!";
+
                 //Redirect user to the "Entries" List page
                 return RedirectToAction("index");
             }
@@ -156,6 +162,9 @@ namespace Treehouse.FitnessFrog.Controllers
         {
             //Delete the entry
             _entriesRepository.DeleteEntry(id);
+
+            TempData["Message"] = "Your Entry was successfully deleted!";
+
             //Redirect user to the entries list page
             return RedirectToAction("Index");           
         }
