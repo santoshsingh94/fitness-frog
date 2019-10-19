@@ -141,8 +141,23 @@ namespace Treehouse.FitnessFrog.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Retrive entry for the provided id parameter value
+            Entry entry = _entriesRepository.GetEntry((int)id);
 
-            return View();
+            //return "Not Found" if an entry was't found
+            if (entry == null)
+                return HttpNotFound();
+
+            //pass the entry to the view
+            return View(entry);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            //Delete the entry
+            _entriesRepository.DeleteEntry(id);
+            //Redirect user to the entries list page
+            return RedirectToAction("Index");           
         }
 
 
