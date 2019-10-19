@@ -44,7 +44,7 @@ namespace Treehouse.FitnessFrog.Controllers
             //Instantiation of Entry model
             var entry = new Entry()
             {
-                Date =Convert.ToDateTime(DateTime.UtcNow.ToString("dd/MM/yyyy").Replace('-','/'))
+                Date =DateTime.Today        //Convert.ToDateTime(DateTime.UtcNow.ToString("dd/MM/yyyy").Replace('-','/'))
             };
             ViewBag.ActivitiesSelectListItems = new SelectList(
                 Data.Data.Activities, "Id", "Name");
